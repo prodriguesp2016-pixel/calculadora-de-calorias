@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Calorias</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        label, select, input, button { display: block; margin-bottom: 10px; width: 100%; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #45a049; }
+        #resultado { margin-top: 20px; padding: 15px; background-color: #f2f2f2; border-radius: 5px; text-align: center; }
+        #resultado h3 { margin: 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora de Calorias para Emagrecimento</h2>
+    <p>Preencha os dados abaixo para estimar suas necessidades calóricas diárias e encontrar o cardápio ideal.</p>
+
+    <label for="sexo">Sexo:</label>
+    <select id="sexo">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+    </select>
+
+    <label for="idade">Idade (anos):</label>
+    <input type="number" id="idade" placeholder="Ex: 30" min="15" required>
+
+    <label for="peso">Peso (kg):</label>
+    <input type="number" id="peso" placeholder="Ex: 70" min="40" required>
+
+    <label for="altura">Altura (cm):</label>
+    <input type="number" id="altura" placeholder="Ex: 170" min="100" required>
+
+    <label for="atividade">Nível de Atividade Física:</label>
+    <p style="font-size: 14px; margin-top: -5px; margin-bottom: 10px;">
+        Escolha a opção que melhor descreve sua rotina de exercícios. Seja honesto(a) para um resultado preciso!
+    </p>
+    <select id="atividade">
+        <option value="1.2">Sedentário (praticamente nenhuma atividade)</option>
+        <option value="1.375">Levemente Ativo (exercício 1-2x por semana)</option>
+        <option value="1.55">Moderadamente Ativo (exercício 3-5x por semana)</option>
+        <option value="1.725">Muito Ativo (
