@@ -43,4 +43,65 @@
         <option value="1.2">Sedentário (praticamente nenhuma atividade)</option>
         <option value="1.375">Levemente Ativo (exercício 1-2x por semana)</option>
         <option value="1.55">Moderadamente Ativo (exercício 3-5x por semana)</option>
-        <option value="1.725">Muito Ativo (
+        <option value="1.725">Muito Ativo (exercício 6-7x por semana)</option>
+        <option value="1.9">Extremamente Ativo (treino intenso diário)</option>
+    </select>
+
+    <button onclick="calcularCalorias()">Calcular</button>
+
+    <div id="resultado">
+        </div>
+</div>
+
+<script>
+    function calcularCalorias() {
+        const sexo = document.getElementById('sexo').value;
+        const idade = parseFloat(document.getElementById('idade').value);
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        const fatorAtividade = parseFloat(document.getElementById('atividade').value);
+
+        if (isNaN(idade) || isNaN(peso) || isNaN(altura) || idade <= 0 || peso <= 0 || altura <= 0) {
+            document.getElementById('resultado').innerHTML = '<h3>Por favor, insira valores válidos.</h3>';
+            return;
+        }
+
+        let tmb;
+        if (sexo === 'masculino') {
+            tmb = (10 * peso) + (6.25 * altura) - (5 * idade) + 5;
+        } else {
+            tmb = (10 * peso) + (6.25 * altura) - (5 * idade) - 161;
+        }
+
+        const gct = tmb * fatorAtividade;
+        let caloriasEmagrecer = gct - 500;
+
+        if (caloriasEmagrecer < 1450) {
+            caloriasEmagrecer = 1450;
+        }
+
+        const cardapiosDisponiveis = [1500, 1600, 1700, 1800, 1900, 2000];
+        let cardapioMaisProximo = cardapiosDisponiveis[0];
+        let menorDiferenca = Math.abs(caloriasEmagrecer - cardapioMaisProximo);
+
+        for (let i = 1; i < cardapiosDisponiveis.length; i++) {
+            const diferenca = Math.abs(caloriasEmagrecer - cardapiosDisponiveis[i]);
+            if (diferenca < menorDiferenca) {
+                menorDiferenca = diferenca;
+                cardapioMaisProximo = cardapiosDisponiveis[i];
+            }
+        }
+
+        const resultadoHTML = `
+            <h3>Resultado:</h3>
+            <p>Sua estimativa de calorias diárias para emagrecer é:</p>
+            <h3>${Math.round(caloriasEmagrecer)} kcal</h3>
+            <p>O cardápio mais adequado para você é o de:</p>
+            <h3>${cardapioMaisProximo} kcal</h3>
+        `;
+        document.getElementById('resultado').innerHTML = resultadoHTML;
+    }
+</script>
+
+</body>
+</html>
